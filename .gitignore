@@ -20,7 +20,7 @@ ENV/
 *.log
 local_settings.py
 /staticfiles/
-media/
+# media/     # optional for development
 
 # Node / Tailwind
 node_modules/
@@ -29,8 +29,8 @@ yarn.lock
 npm-debug.log
 
 # IDEs / Editors
-.vscode/
 .idea/
+# .vscode/   # optional for development
 *.sublime-project
 *.sublime-workspace
 
@@ -39,3 +39,6 @@ npm-debug.log
 
 # Windows
 Thumbs.db
+
+# Banco de dados local
+# db.sqlite3  #optional for development

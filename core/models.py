@@ -1,11 +1,6 @@
-from pathlib import Path
-
 from django.core.validators import MaxLengthValidator
 from django.db import models
 
-# CORE_PATH = Path(__file__).resolve().parent
-# IMAGE_PATH = CORE_PATH / 'static' / 'core' / 'images'
-# FILE_PATH = CORE_PATH.parent / 'Files'
 
 class Author(models.Model):
     name = models.CharField(max_length=200)
