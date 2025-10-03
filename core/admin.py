@@ -2,47 +2,47 @@ from typing import ClassVar
 
 from django.contrib import admin
 
-from .models import Autor, Leitor, Leitura, Livro
+from .models import Author, Book, Read, Reader
 
 # Register your models here.
 
 
-@admin.register(Autor)
-class AutorAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'idade')
-    search_fields = ('nome',)
+@admin.register(Author)
+class AuthorAdmin(admin.ModelAdmin):
+    list_display = ('name', 'age', 'biography', 'picture')
+    search_fields = ('name',)
     fieldsets: ClassVar = (
         (None, {
-            'fields': ('nome', 'idade',)
+            'fields': ('name', 'age', 'biography', 'picture')
             }),
         )
 
-@admin.register(Leitor)
-class LeitorAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'idade', 'preferencia')
-    search_fields = ('nome', 'preferencia', 'livros')
+@admin.register(Reader)
+class ReaderAdmin(admin.ModelAdmin):
+    list_display = ('name', 'age', 'preference')
+    search_fields = ('name', 'preference')
     fieldsets: ClassVar = (
         (None, {
-            'fields': ('nome', 'idade', 'preferencia')
+            'fields': ('name', 'age', 'preference')
             }),
         )
 
-@admin.register(Leitura)
-class LeituraAdmin(admin.ModelAdmin):
-    list_display = ('leitor', 'livro', 'data_leitura', 'avaliacao')
-    search_fields = ('leitor', 'livro', 'data_leitura', 'avaliacao')
+@admin.register(Read)
+class ReadAdmin(admin.ModelAdmin):
+    list_display = ('reader', 'book', 'read_date', 'evaluation')
+    search_fields = ('reader__name', 'book__title')
     fieldsets: ClassVar = (
         (None, {
-            'fields': ('leitor', 'livro', 'data_leitura', 'avaliacao')
+            'fields': ('reader', 'book', 'read_date', 'evaluation')
             }),
         )
 
-@admin.register(Livro)
-class LivroAdmin(admin.ModelAdmin):
-    list_display = ('titulo', 'capa', 'estilo', 'autor')
-    search_fields = ('titulo', 'capa', 'estilo', 'autor')
+@admin.register(Book)
+class BookAdmin(admin.ModelAdmin):
+    list_display = ('title', 'cover', 'style', 'author')
+    search_fields = ('title', 'style', 'author__name')
     fieldsets: ClassVar = (
         (None, {
-            'fields': ('titulo', 'capa', 'estilo', 'autor')
+            'fields': ('title', 'cover', 'style', 'author', 'description', 'file')
             }),
         )

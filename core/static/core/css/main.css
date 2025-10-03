@@ -1,0 +1,25 @@
+.bg-custom-dark {
+  background-color: oklch(14.5% 0 0);
+}
+
+.bg-custom-dark:hover {
+  background-color: oklch(25% 0 0);
+}
+
+.panel_color {
+  background-color: oklch(14.5% 0 0);
+}
+
+.options_menu a {
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid transparent;
+}
+
+.options_menu a.active {
+  color: red;
+  border-bottom: 3px solid red;
+}
+
+.read_button {
+  cursor: pointer;
+}

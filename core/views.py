@@ -5,6 +5,7 @@ from django.shortcuts import render
 def index(request):
     title = "Month's top three"
     return render(request, 'core/index.html', {
+        'page': 'index',
         'title': title
     })
 

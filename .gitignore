@@ -9,7 +9,6 @@ __pycache__/
 *.egg-info/
 dist/
 build/
-*.sqlite3
 
 # Virtual Environment
 venv/
@@ -20,7 +19,6 @@ ENV/
 # Django
 *.log
 local_settings.py
-db.sqlite3
 /staticfiles/
 media/
 
@@ -29,7 +27,6 @@ node_modules/
 package-lock.json
 yarn.lock
 npm-debug.log
-output.css
 
 # IDEs / Editors
 .vscode/
