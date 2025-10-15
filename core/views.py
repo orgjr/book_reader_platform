@@ -35,25 +35,18 @@ def reader_login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return render(request, "core/index.html", {"page": "reader"})
+            return redirect("reader")
         else:
             return render(
                 request,
                 "core/index.html",
-                {"page": "reader", "error": "Usuário ou senha incorretos."},
+                {"page": "reader_login", "error": "Usuário ou senha incorretos."},
             )
-    return render(request, "core/index.html", {"page": "reader"})
+    return render(request, "core/index.html", {"page": "reader_login"})
 
 
 def reader(request):
     if not request.user.is_authenticated:
-        return render(
-            request,
-            "core/index.html",
-            {
-                "page": "reader_login",
-                "error": "Por favor, faça login para acessar esta página.",
-            },
-        )
+        return render(request, "core/index.html", {"page": "reader_login"})
 
     return render(request, "core/index.html", {"page": "reader"})
