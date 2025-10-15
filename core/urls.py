@@ -1,15 +1,18 @@
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth.views import LogoutView
 from django.urls import path
 
 from . import views
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('author', views.author, name='author'),
-    path('book', views.book, name='book'),
-    path('reader', views.reader, name='reader'),
-    path('read', views.read, name='read'),
+    path("", views.index, name="index"),
+    path("author", views.author, name="author"),
+    path("book", views.book, name="book"),
+    path("reader", views.reader, name="reader"),
+    path("read", views.read, name="read"),
+    path("login", views.reader_login, name="reader_login"),
+    path("logout", LogoutView.as_view(next_page="index"), name="logout"),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

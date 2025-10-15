@@ -20,6 +20,12 @@
             <a href="{% url 'book' %}" class="hover:text-gray-300 {% if request.resolver_match.url_name == 'book' %}active{% endif %}">Livro</a>
             <a href="{% url 'reader' %}" class="hover:text-gray-300 {% if request.resolver_match.url_name == 'reader' %}active{% endif %}">Leitor</a>
             <a href="{% url 'read' %}" class="hover:text-gray-300 {% if request.resolver_match.url_name == 'read' %}active{% endif %}">Leitura</a>
+            {% if user.is_authenticated %}
+              <form method="post" action="{% url 'logout' %}" id="logout-form" class="hidden">
+                {% csrf_token %}
+              </form>
+              <a href="#" class="logout hover:text-gray-300">Sair</a>
+            {% endif %}
           </div>
         </div>
       </div>
@@ -27,7 +33,6 @@
     <!-- Conteúdo principal -->
     <main class="flex-1 flex align-center justify-center overflow-y-auto mb-20">
       <div class="container mx-auto px-4 py-8 ">
-        <h2 class="text-3xl font-bold text-gray-900 mb-8 ">{{ title }}</h2>
         {% if page == 'author' %}
           {% include 'core/author.html' %}
         {% elif page == 'book' %}
@@ -37,17 +42,22 @@
         {% elif page == 'read' %}
           {% include 'core/read.html' %}
         {% else %}
+          <h2 class="text-3xl font-bold text-gray-900 mb-8 ">{{ the_title }}</h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {% include 'core/cards.html' %}
-            {% include 'core/cards.html' %}
             {% include 'core/cards.html' %}
           </div>
         {% endif %}
       </div>
     </main>
     <!-- Rodapé -->
-    <footer class="panel_color text-white text-center py-4 fixed bottom-0 w-full"> Este é um exemplo de template com
+    <footer class="panel_color text-white text-center py-4 fixed bottom-0 md:w-full"> Este é um exemplo de template com
       <a class="underline" href="https://tailwindcss.com/">TailwindCSS</a>.
     </footer>
+    <script>
+      document.querySelector('.logout').addEventListener('click', (e) => {
+        e.preventDefault();
+        document.getElementById('logout-form').submit();
+      })
+    </script>
   </body>
 </html>
